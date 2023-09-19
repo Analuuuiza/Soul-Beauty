@@ -3,7 +3,7 @@
 1. Clone este repositório para o seu ambiente de desenvolvimento local utilizando o comando:
 ```
 
- git clone https://github.com/Flips69/exercicios-api.git
+ git clone https://github.com/Analuuuiza/soul-beauty.git
 ```
 2. Acesse o diretório do projeto:
 ```
