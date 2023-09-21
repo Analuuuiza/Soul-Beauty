@@ -7,7 +7,7 @@
 ```
 2. Acesse o diretório do projeto:
 ```
-cd exercicios-api
+cd soul-beauty
 ```
 3. Inicializando o Repositorio
 ```
