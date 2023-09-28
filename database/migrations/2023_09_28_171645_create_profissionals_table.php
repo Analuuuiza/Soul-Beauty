@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('profissionals', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 120)->nullable(false);
             $table->string('celular', 11)->nullable(false);
@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('cep', 8)->nullable(false);
             $table->string('complemento', 150)->nullable(true);
             $table->string('password')->nullable(false);
+            $table->decimal('salario')->nullable(false);
             $table->timestamps();
-
         });
     }
 
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('profissionals');
     }
 };

@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ClienteRequest;
-use App\Models\Cliente;
+use App\Http\Requests\ProfissionalRequest;
+use App\Models\Profissional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ClienteController extends Controller
-
+class ProfissionalController extends Controller
 {
-    public function store(ClienteRequest $request){
-        $cliente = Cliente::create([
+    public function store(ProfissionalRequest $request){
+        $profissional = Profissional::create([
             'nome' => $request->nome,
             'celular' => $request->celular,
             'email' => $request->email,
@@ -26,115 +25,119 @@ class ClienteController extends Controller
             'cep' => $request->cep,
             'complemento' => $request->complemento,
             'password' => Hash::make($request->password),
+            'salario' => $request->salario,
         ]);
 
         return response()->json([
             "sucess" => true,
-            "message" => "Cliente cadastrado com sucesso",
-            "data" => $cliente
+            "message" => "Profissional cadastrado com sucesso",
+            "data" => $profissional
         ],200);
 }
-
 public function excluir($id){
-    $usuario = Cliente::find($id);
+    $profissional = Profissional::find($id);
 
-    if(!isset($usuario)){
+    if(!isset($profissional)){
     return response()->json([
         'status' => false,
-        'message' => "Cliente não encontrado"
+        'message' => "Profissional não encontrado"
     ]);
 }
 
-$usuario->delete();
+$profissional->delete();
 
 return response()->json([
     'status'=> false,
-    'message' => "Cliente excliuído com sucesso"
+    'message' => "Profissional excliuído com sucesso"
 ]);
 }
 
 public function update(Request $request){
-$usuario = Cliente::find($request->id);
+$profissional = Profissional::find($request->id);
 
-if(!isset($usuario)){
+if(!isset($profissional)){
     return response()->json([
         'status' => false,
-        'message' => "Cliente não encontrado"
+        'message' => "Profissional não encontrado"
     ]);
 }
 
 if(isset($request->nome)){
-$usuario->nome = $request->nome;
+$profissional->nome = $request->nome;
 }
 
 if(isset($request->celular)){
-$usuario->celular = $request->celular;
+$profissional->celular = $request->celular;
 }
 
 if(isset($request->email)){
-$usuario->email = $request->email;
+$profissional->email = $request->email;
 }
 
 if(isset($request->cpf)){
-$usuario->cpf = $request->cpf;
+$profissional->cpf = $request->cpf;
 }
 
 if(isset($request->dataNascimento)){
-    $usuario->dataNascimento = $request->dataNascimento;
+    $profissional->dataNascimento = $request->dataNascimento;
 }
 
 if(isset($request->cidade)){
-    $usuario->cidade = $request->cidade;
+    $profissional->cidade = $request->cidade;
 }
 
 if(isset($request->estado)){
-    $usuario->estado = $request->estado;
+    $profissional->estado = $request->estado;
 }
 
 if(isset($request->pais)){
-    $usuario->pais = $request->pais;
+    $profissional->pais = $request->pais;
 }
 
 if(isset($request->rua)){
-    $usuario->rua = $request->rua;
+    $profissional->rua = $request->rua;
 }
 
 if(isset($request->numero)){
-    $usuario->numero = $request->numero;
+    $profissional->numero = $request->numero;
 }
 
 if(isset($request->bairro)){
-    $usuario->bairro = $request->bairro;
+    $profissional->bairro = $request->bairro;
 }
 
 if(isset($request->cep)){
-    $usuario->cep = $request->cep;
+    $profissional->cep = $request->cep;
 }
 
 if(isset($request->complemento)){
-    $usuario->complemento = $request->complemento;
+    $profissional->complemento = $request->complemento;
 }
 
 if(isset($request->password)){
-    $usuario->password = $request->password;
+    $profissional->password = $request->password;
 }
 
-$usuario->update();
+if(isset($request->salario)){
+    $profissional->salario = $request->salario;
+}
+
+$profissional->update();
 
 return response()->json([
     'status' => true,
-    'message' => "Cliente atualizado"
+    'message' => "Profissional atualizado"
 ]);
 }
 
 public function pesquisarPorNome(Request $request){
-    $usuarios = Cliente::where('nome', 'like', '%'.$request->nome.'%')->get();
+    $profissionais = Profissional::where('nome', 'like', '%'.$request->nome.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($profissionais) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $profissionais
     ]);
 }
     return response()->json([
@@ -144,13 +147,13 @@ if(count($usuarios) > 0){
 }
 
 public function pesquisarPorCpf(Request $request){
-    $usuarios = Cliente::where('cpf', 'like', '%'.$request->cpf.'%')->get();
+    $profissionais = Profissional::where('cpf', 'like', '%'.$request->cpf.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($profissionais) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $profissionais
     ]);
 }
     return response()->json([
@@ -160,13 +163,13 @@ if(count($usuarios) > 0){
 }
 
 public function pesquisarPorCelular(Request $request){
-    $usuarios = Cliente::where('celular', 'like', '%'.$request->celular.'%')->get();
+    $profissionais = Profissional::where('celular', 'like', '%'.$request->celular.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($profissionais) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $profissionais
     ]);
 }
     return response()->json([
@@ -176,13 +179,13 @@ if(count($usuarios) > 0){
 }
 
 public function pesquisarPorEmail(Request $request){
-    $usuarios = Cliente::where('email', 'like', '%'.$request->email.'%')->get();
+    $profissionais = Profissional::where('email', 'like', '%'.$request->email.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($profissionais) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $profissionais
     ]);
 }
     return response()->json([
@@ -191,3 +194,4 @@ if(count($usuarios) > 0){
 ]);
 }
 }
+

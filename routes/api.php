@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,22 +34,44 @@ Route::get('servico/find/descricao/{descricao}',
 
 
 Route::post('clientes/store',
-[ClienteController::class, 'store']);
+[clienteController::class, 'store']);
 
 Route::delete('clientes/delete/{id}',
-[ClienteController::class, 'excluir']);
+[ClienteControllerController::class, 'excluir']);
 
 Route::put('clientes/update',
-[ClienteController::class, 'update']);
+[ClienteControllerController::class, 'update']);
 
 Route::get('clientes/nome',
-[ClienteController::class, 'pesquisarPorNome']);
+[ClienteControllerController::class, 'pesquisarPorNome']);
 
 Route::get('clientes/celular',
-[ClienteController::class, 'pesquisarPorCelular']);
+[ClienteControllerController::class, 'pesquisarPorCelular']);
 
 Route::get('clientes/cpf',
-[ClienteController::class, 'pesquisarPorCpf']);
+[ClienteControllerController::class, 'pesquisarPorCpf']);
 
 Route::get('clientes/email',
-[ClienteController::class, 'pesquisarPorEmail']);
+[ClienteControllerController::class, 'pesquisarPorEmail']);
+
+
+Route::post('proficional/store',
+[ProfissionalController::class, 'store']);
+
+Route::delete('profissional/delete/{id}',
+[ProfissionalController::class, 'excluir']);
+
+Route::put('profissional/update',
+[ProfissionalController::class, 'update']);
+
+Route::get('profissional/nome',
+[ProfissionalController::class, 'pesquisarPorNome']);
+
+Route::get('profissional/celular',
+[ProfissionalController::class, 'pesquisarPorCelular']);
+
+Route::get('profissional/cpf',
+[ProfissionalController::class, 'pesquisarPorCpf']);
+
+Route::get('profissional/email',
+[ProfissionalController::class, 'pesquisarPorEmail']);
