@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ServicoController extends Controller
 {
     public function store( ServicoRequest $request){
-        $usuario = Servico::create([
+        $servico = Servico::create([
             'nome' => $request->nome,
             'descricao' => $request->descricao,
             'duracao' => $request->duracao,
@@ -21,20 +21,20 @@ class ServicoController extends Controller
         return response()->json([
             "success" => true,
             "message" => "Serviço cadastrado com sucesso",
-            "data" => $usuario
+            "data" => $servico
         ], 200);
 }
     public function excluir($id){
-        $usuario = Servico::find($id);
+        $servico = Servico::find($id);
 
-        if(!isset($usuario)){
+        if(!isset($servico)){
         return response()->json([
             'status' => false,
             'message' => "Serviço não encontrado"
         ]);
     }
 
-    $usuario->delete();
+    $servico->delete();
 
     return response()->json([
         'status'=> false,
@@ -43,9 +43,9 @@ class ServicoController extends Controller
 }
 
 public function update(Request $request){
-    $usuario = Servico::find($request->id);
+    $servico = Servico::find($request->id);
 
-    if(!isset($usuario)){
+    if(!isset($servico)){
         return response()->json([
             'status' => false,
             'message' => "Serviço não encontrado"
@@ -53,22 +53,22 @@ public function update(Request $request){
     }
 
     if(isset($request->nome)){
-    $usuario->nome = $request->nome;
+    $servico->nome = $request->nome;
     }
 
     if(isset($request->descricao)){
-    $usuario->descricao = $request->descricao;
+    $servico->descricao = $request->descricao;
     }
 
     if(isset($request->duracao)){
-    $usuario->duracao = $request->duracao;
+    $servico->duracao = $request->duracao;
     }
 
     if(isset($request->preco)){
-    $usuario->preco = $request->preco;
+    $servico->preco = $request->preco;
     }
 
-    $usuario->update();
+    $servico->update();
 
     return response()->json([
         'status' => true,
@@ -77,13 +77,13 @@ public function update(Request $request){
 }
 
 public function pesquisarPorNome(Request $request){
-    $usuarios = Servico::where('nome', 'like', '%'.$request->nome.'%')->get();
+    $servicos = Servico::where('nome', 'like', '%'.$request->nome.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($servicos) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $servicos
     ]);
 }
     return response()->json([
@@ -91,17 +91,19 @@ if(count($usuarios) > 0){
     'message' => "Não há resultado para pesquisa"
 ]);
 }
-public function pesquisarPorDescricao($descricao){
-    $usuario = Servico::where('descricao', $descricao)->first();
-    if($usuario == null){
+public function pesquisarPorDescricao(Request $request){
+    $servicos = Servico::where('descricao', 'like', '%'.$request->descricao.'%')->get();
+
+   if(count($servicos) > 0){
     return response()->json([
-        'status'=> true,
+        'status' => true,
+        'data' => $servicos
+        ]);
+    }
+    return response()->json([
+        'status'=> false,
         'message' => "Serviço não encontrado"
     ]);
 }
-return response()->json([
-    'status' => true,
-    'data' => $usuario
-    ]);
-}
+
 }
