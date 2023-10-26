@@ -36,16 +36,16 @@ class ClienteController extends Controller
 }
 
 public function excluir($id){
-    $usuario = Cliente::find($id);
+    $cliente = Cliente::find($id);
 
-    if(!isset($usuario)){
+    if(!isset($cliente)){
     return response()->json([
         'status' => false,
         'message' => "Cliente não encontrado"
     ]);
 }
 
-$usuario->delete();
+$cliente->delete();
 
 return response()->json([
     'status'=> false,
@@ -54,9 +54,9 @@ return response()->json([
 }
 
 public function update(Request $request){
-$usuario = Cliente::find($request->id);
+$cliente = Cliente::find($request->id);
 
-if(!isset($usuario)){
+if(!isset($cliente)){
     return response()->json([
         'status' => false,
         'message' => "Cliente não encontrado"
@@ -64,62 +64,62 @@ if(!isset($usuario)){
 }
 
 if(isset($request->nome)){
-$usuario->nome = $request->nome;
+$cliente->nome = $request->nome;
 }
 
 if(isset($request->celular)){
-$usuario->celular = $request->celular;
+$cliente->celular = $request->celular;
 }
 
 if(isset($request->email)){
-$usuario->email = $request->email;
+$cliente->email = $request->email;
 }
 
 if(isset($request->cpf)){
-$usuario->cpf = $request->cpf;
+$cliente->cpf = $request->cpf;
 }
 
 if(isset($request->dataNascimento)){
-    $usuario->dataNascimento = $request->dataNascimento;
+    $cliente->dataNascimento = $request->dataNascimento;
 }
 
 if(isset($request->cidade)){
-    $usuario->cidade = $request->cidade;
+    $cliente->cidade = $request->cidade;
 }
 
 if(isset($request->estado)){
-    $usuario->estado = $request->estado;
+    $cliente->estado = $request->estado;
 }
 
 if(isset($request->pais)){
-    $usuario->pais = $request->pais;
+    $cliente->pais = $request->pais;
 }
 
 if(isset($request->rua)){
-    $usuario->rua = $request->rua;
+    $cliente->rua = $request->rua;
 }
 
 if(isset($request->numero)){
-    $usuario->numero = $request->numero;
+    $cliente->numero = $request->numero;
 }
 
 if(isset($request->bairro)){
-    $usuario->bairro = $request->bairro;
+    $cliente->bairro = $request->bairro;
 }
 
 if(isset($request->cep)){
-    $usuario->cep = $request->cep;
+    $cliente->cep = $request->cep;
 }
 
 if(isset($request->complemento)){
-    $usuario->complemento = $request->complemento;
+    $cliente->complemento = $request->complemento;
 }
 
 if(isset($request->password)){
-    $usuario->password = $request->password;
+    $cliente->password = $request->password;
 }
 
-$usuario->update();
+$cliente->update();
 
 return response()->json([
     'status' => true,
@@ -128,13 +128,13 @@ return response()->json([
 }
 
 public function pesquisarPorNome(Request $request){
-    $usuarios = Cliente::where('nome', 'like', '%'.$request->nome.'%')->get();
+    $clientes = Cliente::where('nome', 'like', '%'.$request->nome.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($clientes) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $clientes
     ]);
 }
     return response()->json([
@@ -144,13 +144,13 @@ if(count($usuarios) > 0){
 }
 
 public function pesquisarPorCpf(Request $request){
-    $usuarios = Cliente::where('cpf', 'like', '%'.$request->cpf.'%')->get();
+    $clientes = Cliente::where('cpf', 'like', '%'.$request->cpf.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($clientes) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $clientes
     ]);
 }
     return response()->json([
@@ -160,13 +160,13 @@ if(count($usuarios) > 0){
 }
 
 public function pesquisarPorCelular(Request $request){
-    $usuarios = Cliente::where('celular', 'like', '%'.$request->celular.'%')->get();
+    $clientes = Cliente::where('celular', 'like', '%'.$request->celular.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($clientes) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $clientes
     ]);
 }
     return response()->json([
@@ -176,13 +176,13 @@ if(count($usuarios) > 0){
 }
 
 public function pesquisarPorEmail(Request $request){
-    $usuarios = Cliente::where('email', 'like', '%'.$request->email.'%')->get();
+    $clientes = Cliente::where('email', 'like', '%'.$request->email.'%')->get();
 
-if(count($usuarios) > 0){
+if(count($clientes) > 0){
 
     return response()->json([
         'status' => true,
-        'data' => $usuarios
+        'data' => $clientes
     ]);
 }
     return response()->json([
