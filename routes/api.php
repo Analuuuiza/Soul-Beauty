@@ -26,11 +26,14 @@ Route::delete('servico/delete/{id}',
 Route::put('servico/update',
 [ServicoController::class, 'update']);
 
-Route::get('servico/nome',
+Route::post('servico/nome',
 [ServicoController::class, 'pesquisarPorNome']);
 
 Route::get('servico/find/descricao',
 [ServicoController::class, 'pesquisarPorDescricao']); 
+
+Route::get('servico/retornarTodos',
+[ServicoController::class, 'retornarTodos']);
 
 
 Route::post('profissional/store',

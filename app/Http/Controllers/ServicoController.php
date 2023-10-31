@@ -106,4 +106,12 @@ public function pesquisarPorDescricao(Request $request){
     ]);
 }
 
+public function retornarTodos(){
+    $servicos = Servico::all();
+
+    return response()->json([
+        'status' => true,
+        'data' => $servicos
+    ]);
+}
 }
