@@ -57,6 +57,9 @@ Route::get('profissional/cpf',
 Route::get('profissional/email',
 [ProfissionalController::class, 'pesquisarPorEmail']);
 
+Route::get('profissional/retornarTodos',
+[ProfissionalController::class, 'retornarTodos']);
+
 
 Route::post('cliente/store',
 [clienteController::class, 'store']);
@@ -78,3 +81,6 @@ Route::get('cliente/cpf',
 
 Route::get('cliente/email',
 [ClienteController::class, 'pesquisarPorEmail']);
+
+Route::get('cliente/retornarTodos',
+[ClienteController::class, 'retornarTodos']);

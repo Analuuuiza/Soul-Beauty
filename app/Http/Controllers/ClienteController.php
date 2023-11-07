@@ -190,4 +190,13 @@ if(count($clientes) > 0){
     'message' => "Não há resultado para pesquisa"
 ]);
 }
+
+public function retornarTodos(){
+    $clientes = Cliente::all();
+
+    return response()->json([
+        'status' => true,
+        'data' => $clientes
+    ]);
+}
 }
