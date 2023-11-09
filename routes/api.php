@@ -26,7 +26,7 @@ Route::delete('servico/delete/{id}',
 Route::put('servico/update',
 [ServicoController::class, 'update']);
 
-Route::post('servico/nome',
+Route::get('servico/nome',
 [ServicoController::class, 'pesquisarPorNome']);
 
 Route::get('servico/find/descricao',
@@ -34,6 +34,10 @@ Route::get('servico/find/descricao',
 
 Route::get('servico/retornarTodos',
 [ServicoController::class, 'retornarTodos']);
+
+Route::get('servico/find/{id}',
+[ServicoController::class, 'pesquisarPorId']);
+
 
 
 Route::post('profissional/store',
@@ -60,6 +64,9 @@ Route::get('profissional/email',
 Route::get('profissional/retornarTodos',
 [ProfissionalController::class, 'retornarTodos']);
 
+Route::get('profissional/find/{id}',
+[ProfissionalController::class, 'pesquisarPorId']);
+
 
 Route::post('cliente/store',
 [clienteController::class, 'store']);
@@ -84,3 +91,6 @@ Route::get('cliente/email',
 
 Route::get('cliente/retornarTodos',
 [ClienteController::class, 'retornarTodos']);
+
+Route::get('cliente/find/{id}',
+[ClienteController::class, 'pesquisarPorId']);
