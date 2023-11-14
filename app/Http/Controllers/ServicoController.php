@@ -120,8 +120,8 @@ public function pesquisarPorId($id){
 
     if($servico == null){
         return response()->json([
-            'stattus' => false,
-            'message' => "Usuário não encontrado"
+            'status' => false,
+            'message' => "Serviço não encontrado"
         ]);
     }
 
