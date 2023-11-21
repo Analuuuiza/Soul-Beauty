@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProfissionalController;
 use App\Http\Controllers\ServicoController;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Servico
 Route::post('servico/store',
 [ServicoController::class, 'store']);
 
@@ -39,7 +41,7 @@ Route::get('servico/find/{id}',
 [ServicoController::class, 'pesquisarPorId']);
 
 
-
+//Profissional
 Route::post('profissional/store',
 [ProfissionalController::class, 'store']);
 
@@ -68,6 +70,7 @@ Route::get('profissional/find/{id}',
 [ProfissionalController::class, 'pesquisarPorId']);
 
 
+//Cliente
 Route::post('cliente/store',
 [clienteController::class, 'store']);
 
@@ -94,3 +97,20 @@ Route::get('cliente/retornarTodos',
 
 Route::get('cliente/find/{id}',
 [ClienteController::class, 'pesquisarPorId']);
+
+
+//Agenda
+Route::post('agenda/store',
+[AgendaController::class, 'store']);
+
+Route::get('agenda/nome',
+[AgendaController::class, 'pesqquisarPorData']);
+
+Route::get('agenda/profissional',
+[AgendaControllerr::class, 'pesqquisarProfissionalAgenda']);
+
+Route::put('agenda/update',
+[AgendaControllerer::class, 'updateAgenda']);
+
+Route::delete('agenda/delete/{id}',
+[AgendaController::class, 'excluirAgenda']);
