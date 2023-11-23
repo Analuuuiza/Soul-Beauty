@@ -28,7 +28,7 @@ Route::delete('servico/delete/{id}',
 Route::put('servico/update',
 [ServicoController::class, 'update']);
 
-Route::get('servico/nome',
+Route::post('servico/nome',
 [ServicoController::class, 'pesquisarPorNome']);
 
 Route::get('servico/find/descricao',
@@ -51,7 +51,7 @@ Route::delete('profissional/delete/{id}',
 Route::put('profissional/update',
 [ProfissionalController::class, 'update']);
 
-Route::get('profissional/nome',
+Route::post('profissional/nome',
 [ProfissionalController::class, 'pesquisarPorNome']);
 
 Route::get('profissional/celular',
@@ -80,7 +80,7 @@ Route::delete('cliente/delete/{id}',
 Route::put('cliente/update',
 [ClienteController::class, 'update']);
 
-Route::get('cliente/nome',
+Route::post('cliente/nome',
 [ClienteController::class, 'pesquisarPorNome']);
 
 Route::get('cliente/celular',
