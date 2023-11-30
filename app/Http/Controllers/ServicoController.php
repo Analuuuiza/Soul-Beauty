@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ServicoRequest;
+use App\Http\Requests\ServicoUpdRequest;
 use App\Models\Servico;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -42,7 +43,7 @@ class ServicoController extends Controller
 ]);
 }
 
-public function update(Request $request){
+public function update(ServicoUpdRequest $request){
     $servico = Servico::find($request->id);
 
     if(!isset($servico)){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfissionalRequest;
+use App\Http\Requests\ProfissionalUpdRequest;
 use App\Models\Profissional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -52,7 +53,7 @@ return response()->json([
 ]);
 }
 
-public function update(Request $request){
+public function update(ProfissionalUpdRequest $request){
 $profissional = Profissional::find($request->id);
 
 if(!isset($profissional)){
