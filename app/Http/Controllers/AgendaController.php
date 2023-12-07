@@ -11,11 +11,7 @@ class AgendaController extends Controller
     public function store(AgendaRequest $request){
         $agenda = Agenda::create([
             'profissional_id' => $request->profissional_id,
-            'cliente_id' => $request->cliente_id,
-            'servico_id' => $request->servico_id,
-            'data_hora' => $request->data_hora,
-            'tipo_pagamento' => $request->tipo_pagamento,
-            'valor' => $request->valor,
+            'data_hora' => $request->data_hora
         ]);
 
         return response()->json([
@@ -24,40 +20,23 @@ class AgendaController extends Controller
             "data" => $agenda
         ], 200);
 }
-public function pesquisarPorData(Request $request){
 
-    $agenda = Agenda::where('data_hora', '>=', '%'.$request->data_hora.'%') -> get();
+public function pesquisarPorAgenda(Request $request)
+    {
+        $agendas = Agenda::where('data_hora', '>=', $request->data_hora)->where('profissional_id', '=',  $request->profissional_id)->get();
 
-    if (count($agenda) > 0) {
+        if (count($agendas) > 0) {
+            return response()->json([
+                'status' => true,
+                'data' => $agendas
+            ]);
+        }
         return response()->json([
-            'status' => true,
-            'data' => $agenda
-        ]);
-    }
-}
-public function pesquisarProfissionalAgenda(Request $request){
-    $agenda = Agenda::where('profissional_id', 'like', '%' .$request->profissional_id.'%')->get();
-    
-    if (count($agenda) > 0) {
-        return response()->json([
-            'status' => true,
-            'data' => $agenda
+            'status' => false,
+            'data' => 'Não há resultados para a pesquisa.'
         ]);
     }
 
-    if('status' == false){
-        return response()->json([
-            'data' => 'Profissional não disponível.'
-        ]);
-    }
-}
-public function retornarTodosClientes(){
-    $agenda = Agenda::all();
-    return response()->json([
-        'status' => true,
-        'data' => $agenda
-    ]);
-}
 public function excluirAgenda($id){
     $agenda = Agenda::find($id);
 
@@ -107,6 +86,14 @@ public function updateAgenda(Request $request){
     return response()->json([
         'status' => true,
         'message' => "Compromisso atualizado."
+    ]);
+}
+public function retornarTodos(){
+    $agendas = Agenda::all();
+
+    return response()->json([
+        'status' => true,
+        'data' => $agendas
     ]);
 }
 }

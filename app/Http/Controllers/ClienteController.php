@@ -216,4 +216,24 @@ public function pesquisarPorId($id){
         'data'=> $cliente
     ]);
 }
+
+public function esqueciSenhaCliente(Request $request)
+    {
+        $cliente = Cliente::where('cpf', $request->cpf)->where('email', $request->email)->first();
+
+        if (isset($cliente)) {
+            $cliente->password = Hash::make($cliente->password);
+            $cliente->update();
+            return response()->json([
+                'status' => true,
+                'message' => 'senha redefinida.'
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'não foi possivel alterar a senha.'
+        ]);
+    }
 }
+

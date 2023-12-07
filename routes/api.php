@@ -69,6 +69,9 @@ Route::get('profissional/retornarTodos',
 Route::get('profissional/find/{id}',
 [ProfissionalController::class, 'pesquisarPorId']);
 
+Route::post('profissional/esqueciSenha', 
+[ProfissionalController::class, 'esqueciSenha']);
+
 
 //Cliente
 Route::post('cliente/store',
@@ -98,19 +101,22 @@ Route::get('cliente/retornarTodos',
 Route::get('cliente/find/{id}',
 [ClienteController::class, 'pesquisarPorId']);
 
+Route::post('cliente/esqueciSenha', 
+[ClienteController::class, 'esqueciSenhaCliente']);
+
 
 //Agenda
 Route::post('agenda/store',
 [AgendaController::class, 'store']);
 
-Route::get('agenda/nome',
-[AgendaController::class, 'pesqquisarPorData']);
-
-Route::get('agenda/profissional',
-[AgendaControllerr::class, 'pesqquisarProfissionalAgenda']);
+Route::post('agenda/procurarAgenda', 
+[AgendaController::class,'pesquisarPorAgenda']);
 
 Route::put('agenda/update',
 [AgendaControllerer::class, 'updateAgenda']);
 
 Route::delete('agenda/delete/{id}',
 [AgendaController::class, 'excluirAgenda']);
+
+Route::get('agenda/retornarTodos',
+[AgendaController::class, 'retornarTodos']);
